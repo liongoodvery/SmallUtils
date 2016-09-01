@@ -284,6 +284,7 @@ public class AppUtils {
      */
     public static void openAppInfo(Context context, String packageName) {
         Intent intent = new Intent();
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
         intent.setData(Uri.parse("package:" + packageName));
         context.startActivity(intent);
