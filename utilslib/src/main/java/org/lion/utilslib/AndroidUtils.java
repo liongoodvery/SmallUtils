@@ -220,7 +220,7 @@ public class AndroidUtils {
     }
 
     public static void putSharePreference(Context context, String sp_name, String key, String value) {
-        SharedPreferences sp = context.getSharedPreferences(sp_name, Context.MODE_PRIVATE);
+        SharedPreferences sp = getSharedPreferences(context, sp_name);
         sp.edit().putString(key, value).apply();
     }
 
@@ -228,52 +228,56 @@ public class AndroidUtils {
 
 
     public static void putBoolean(Context context, String sp_name, String key, boolean value) {
-        SharedPreferences sp = context.getSharedPreferences(sp_name, Context.MODE_PRIVATE);
+        SharedPreferences sp = getSharedPreferences(context, sp_name);
         sp.edit().putBoolean(key, value).apply();
 
     }
 
-    public static void putString(Context context, String key, String value) {
-        context.getSharedPreferences(Consts.SP_NAME, Context.MODE_PRIVATE).edit().putString(key, value).apply();
+    public static void putString(Context context, String key, String value, String spName) {
+        getSharedPreferences(context, spName).edit().putString(key, value).apply();
 
     }
 
-    public static String getString(Context context, String key) {
-        return context.getSharedPreferences(Consts.SP_NAME, Context.MODE_PRIVATE).getString(key, "");
+    public static String getString(Context context, String key, String spName) {
+        return getSharedPreferences(context, spName).getString(key, "");
     }
 
-    public static void putBoolean(Context context, String key, boolean value) {
-        putBoolean(context, Consts.SP_NAME, key, value);
+    public static void putBoolean(Context context, String key, boolean value, String spName) {
+        putBoolean(context, spName, key, value);
 
     }
 
-    public static void putInt(Context context, String key, int value) {
-        SharedPreferences sp = context.getSharedPreferences(Consts.SP_NAME, Context.MODE_PRIVATE);
+    public static void putInt(Context context, String key, int value, String spName) {
+        SharedPreferences sp = getSharedPreferences(context, spName);
         sp.edit().putInt(key, value).apply();
 
     }
 
-    public static int getInt(Context context, String key, int defValue) {
-        SharedPreferences sp = context.getSharedPreferences(Consts.SP_NAME, Context.MODE_PRIVATE);
+    public static int getInt(Context context, String key, int defValue, String spName) {
+        SharedPreferences sp = getSharedPreferences(context, spName);
         return sp.getInt(key, defValue);
     }
 
     public static boolean getBoolean(Context context, String sp_name, String key, boolean value) {
-        SharedPreferences sp = context.getSharedPreferences(sp_name, Context.MODE_PRIVATE);
+        SharedPreferences sp = getSharedPreferences(context, sp_name);
         return sp.getBoolean(key, value);
 
     }
 
-    public static boolean getBoolean(Context context, String key, boolean defValue) {
-        SharedPreferences sp = context.getSharedPreferences(Consts.SP_NAME, Context.MODE_PRIVATE);
+    public static boolean getBoolean(Context context, String key, boolean defValue, String spName) {
+        SharedPreferences sp = getSharedPreferences(context, spName);
         return sp.getBoolean(key, defValue);
 
     }
 
     public static boolean getBooleanFalse(Context context, String sp_name, String key, boolean value) {
-        SharedPreferences sp = context.getSharedPreferences(sp_name, Context.MODE_PRIVATE);
+        SharedPreferences sp = getSharedPreferences(context, sp_name);
         return sp.getBoolean(key, false);
 
+    }
+
+    private static SharedPreferences getSharedPreferences(Context context, String sp_name) {
+        return context.getSharedPreferences(sp_name, Context.MODE_PRIVATE);
     }
 
     public static String getSimNumber(Context context) {
